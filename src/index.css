@@ -1,0 +1,53 @@
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body, #root {
+  height: 100vh;
+  margin: 0;
+}
+
+body, input, select, textarea {
+  font-size: 1.6rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.grid-container {
+  /* display prop là grid or inline-grid thì thẻ đó trở thành grid container */
+  display: grid;
+  /* xem ví dụ https://www.w3schools.com/cssref/playit.asp?filename=playcss_grid-template-areas&preval=%27myArea%20myArea%20.%20.%20%27 */
+  grid-template-areas: "header" "main" "footer";
+  /* chỉnh kích thước dòng https://www.w3schools.com/cssref/playit.asp?filename=playcss_grid-template-rows */
+  grid-template-rows: 5rem 1fr 5rem;
+  /* chỉnh kích thước cột https://www.w3schools.com/cssref/playit.asp?filename=playcss_grid-template-columns */
+  grid-template-columns: 1fr;
+  /* chiều cao header và footer đã gán là 5rem thì khi cho height ở đây là 100% thì main sẽ chiếm hết phần còn lại */
+  height: 100%;
+}
+header {
+  grid-area: header;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+a:hover {
+  color: #ff8000;
+}
+main {
+  grid-area: main;
+}
+footer {
+  grid-area: footer;
+  background-color: #203040;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

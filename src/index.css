@@ -5,14 +5,19 @@ html {
   box-sizing: border-box;
 }
 
-body, #root {
+body,
+#root {
   height: 100vh;
   margin: 0;
 }
 
-body, input, select, textarea, button {
+body,
+input,
+select,
+textarea,
+button {
   font-size: 1.6rem;
-  font-family: Montserrat, Helvetica, Arial, sans-serif
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
 }
 
 .grid-container {
@@ -55,6 +60,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 .content {
@@ -110,7 +116,7 @@ footer {
 }
 .button {
   padding: 1rem;
-  border: 0 .1rem #c0c0c0 solid;
+  border: 0 0.1rem #c0c0c0 solid;
   background-color: #f0f0f0;
   cursor: pointer;
 }
@@ -119,4 +125,16 @@ button:hover {
 }
 .button-primary {
   background-color: #f0c040;
+}
+
+/* Filter */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem #c0c0c0 solid;
+}
+.filter div {
+  flex: 1;
 }

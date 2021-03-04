@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import formatCurrency from "../util";
 
-function Products({ products }) {
+function Products({ products, addToCart }) {
   // console.log("type of product", products.isArray);
   // let change = JSON.stringify(products);
   // console.log("json", typeof change);
@@ -20,7 +20,12 @@ function Products({ products }) {
                 </a>
                 <div className="product-price">
                   <div>{formatCurrency(product.price)}</div>
-                  <button className="button-primary">Add to cart</button>
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="button-primary"
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </li>
@@ -31,6 +36,7 @@ function Products({ products }) {
 }
 Products.propTypes = {
   products: PropTypes.any,
+  addToCart: PropTypes.any,
 };
 
 export default Products;

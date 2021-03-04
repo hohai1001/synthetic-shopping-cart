@@ -1,4 +1,5 @@
 import React from "react";
+import Cart from "./components/Cart";
 import Filter from "./components/Filter";
 import Products from "./components/Products";
 import data from "./data.json";
@@ -7,6 +8,7 @@ function App() {
   const [products, setProducts] = React.useState(data.products);
   const [size, setSize] = React.useState("");
   const [sort, setSort] = React.useState("");
+  const [cartItems, setCartItems] = React.useState([]);
 
   // hàm lọc theo giá tiền
   const sortProducts = (event) => {
@@ -51,6 +53,28 @@ function App() {
     }
   };
 
+  const addToCart = (product) => {
+    const cartItem = cartItems.slice();
+    console.log("cartItem", cartItem);
+    let alreadyInCart = false;
+    cartItem.forEach((item) => {
+      if (item._id === product._id) {
+        console.log("item", item);
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItem.push({ ...product, count: 1 });
+    }
+    setCartItems(cartItem);
+  };
+
+  const removeFromCart = (product) => {
+    const cartItem = cartItems.slice();
+    setCartItems(cartItem.filter((x) => x._id !== product._id));
+  };
+
   return (
     <div className="grid-container">
       <header>
@@ -66,9 +90,11 @@ function App() {
               filterProducts={filterProducts}
               sortProducts={sortProducts}
             />
-            <Products products={products} />
+            <Products products={products} addToCart={addToCart} />
           </div>
-          <div className="sidebar">cart items</div>
+          <div className="sidebar">
+            <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+          </div>
         </div>
       </main>
       <footer>All right is reserved.</footer>

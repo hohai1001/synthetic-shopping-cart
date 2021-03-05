@@ -53,25 +53,47 @@ function App() {
     }
   };
 
+  // hàm thêm sản phẩm vào giỏ hàng
+  // biến product khi click sẽ nhận được 1 data chứa các object
   const addToCart = (product) => {
-    const cartItem = cartItems.slice();
-    console.log("cartItem", cartItem);
+    // sao chép mảng
+    const cartItem = cartItems.slice(); // slice là sao chép 1 mảng mới, sau đó lấy mảng mới gán qua cartItem, nó khác với cartItem = cartItems (2 thằng này là 1)
+    // đặt cờ hiệu
     let alreadyInCart = false;
+    // (lần 1): chạy vòng lặp biến mới sao chép mảng từ state
+    // (lần 2): nếu click vào sản phẩm khác thì nó vẫn giống như lần lần chạy 1, còn nếu click vào sản phẩm của lần 1 thì đi vào if trong vào lặp
     cartItem.forEach((item) => {
+      // ban đầu carItem sẽ không có gì. khi click vào button add to cart thì product sẽ có một data, lúc này cartItem vẫn chưa có gì (product 1)
+      // sau đó đi vào if này so sánh thì id sẽ không bằng nhau (item 1)
+
+      // (lần 2): lần này khi click thì product._id sẽ bằng item._id (vì cartItem đã thêm 1 data vào mảng mà data là data của lần 1 chạy)
       if (item._id === product._id) {
-        console.log("item", item);
-        item.count++;
+        // (lần 2): lúc này đã có thêm obj count trong mảng, và tăng thêm 1
+        item.count++; // item đại diện cho tên object
+        // (lần 2): cờ hiệu lúc này đổi thành true
         alreadyInCart = true;
       }
     });
+    // (item 1): sau khi loop trên không bằng nhau thì cờ hiệu vẫn là false => vào if này push 1 data vào mảng
+    // alreadyInCart === false mới đi vô trong làm
+
+    // (lần 2): cờ hiệu lúc này bằng true, sẽ không đi vào if này
     if (!alreadyInCart) {
+      // (item 1): data này sẽ tạo thêm một object count có giá trị là 1 (trường hợp id của item và product không bằng nhau)
+      // (lần 1): thêm data mà product nhận được từ cú click thêm vào cartItem
       cartItem.push({ ...product, count: 1 });
     }
+    // (lần 1): thêm data vào state (data là data của product)
+    // (lần 2): lần này không lấy data của product nữa. chỉ cập nhập count ở trong vòng lặp (data này lần 1 đã thêm, nên chỉ cần cập nhật count)
     setCartItems(cartItem);
   };
 
+  // hàm xóa sản phẩm khỏi giỏ hàng
+  // khi click vào remove thì biến product sẽ nhận vào data
   const removeFromCart = (product) => {
+    // coppy mảng mới để set chứ không được lấy mảng chính
     const cartItem = cartItems.slice();
+    // nếu id product vừa click mà trùng với id cartItem trong giở hàng thì xóa đi. sau đó set lại state
     setCartItems(cartItem.filter((x) => x._id !== product._id));
   };
 

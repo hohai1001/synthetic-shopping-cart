@@ -12,7 +12,6 @@ function Cart(props) {
   const handleInput = (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
-      console.log(123);
     } else if (e.target.name === "name") {
       setName(e.target.value);
     } else if (e.target.name === "address") {
@@ -31,7 +30,6 @@ function Cart(props) {
     };
     // gán object vừa tạo vào props
     createOrder(order);
-    // console.log("order.name", order.name);
   };
 
   return (

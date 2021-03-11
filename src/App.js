@@ -8,7 +8,13 @@ function App() {
   const [products, setProducts] = React.useState(data.products);
   const [size, setSize] = React.useState("");
   const [sort, setSort] = React.useState("");
-  const [cartItems, setCartItems] = React.useState([]);
+  // const [cartItems, setCartItems] = React.useState([]); // khởi tạo này khi refresh sẽ mất sản phẩm trong giỏ hàng
+  // sử dụng storage không trách mất sản phẩm trong giỏ hàng khi refresh lại page
+  const [cartItems, setCartItems] = React.useState(
+    localStorage.getItem("cartItem")
+      ? JSON.parse(localStorage.getItem("cartItem"))
+      : []
+  );
 
   // hàm lọc theo giá tiền
   const sortProducts = (event) => {
@@ -86,6 +92,9 @@ function App() {
     // (lần 1): thêm data vào state (data là data của product)
     // (lần 2): lần này không lấy data của product nữa. chỉ cập nhập count ở trong vòng lặp (data này lần 1 đã thêm, nên chỉ cần cập nhật count)
     setCartItems(cartItem);
+
+    // lưu vào local storage để khi refresh page không bị mất sản phẩm trong giỏ hàng
+    localStorage.setItem("cartItem", JSON.stringify(cartItem));
   };
 
   // hàm xóa sản phẩm khỏi giỏ hàng
@@ -95,6 +104,15 @@ function App() {
     const cartItem = cartItems.slice();
     // nếu id product vừa click mà trùng với id cartItem trong giở hàng thì xóa đi. sau đó set lại state
     setCartItems(cartItem.filter((x) => x._id !== product._id));
+    localStorage.setItem(
+      "cartItem",
+      JSON.stringify(cartItem.filter((x) => x._id !== product._id))
+    );
+  };
+
+  // hàm này show name. biến order nhận từ cart.js là một object
+  const createOrder = (order) => {
+    alert("Need to save order for " + order.name);
   };
 
   return (
@@ -115,7 +133,11 @@ function App() {
             <Products products={products} addToCart={addToCart} />
           </div>
           <div className="sidebar">
-            <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+            <Cart
+              createOrder={createOrder}
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+            />
           </div>
         </div>
       </main>

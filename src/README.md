@@ -15,3 +15,7 @@ danh sách các nhánh làm theo tuần tự
       + body-parser: Đây là một lớp trung gian node.js để xử lí JSON, dự liệu thô, text và mã hóa URL
       + mongoose: Mongoose là một công cụ mô hình hoá đối tượng cho MongoDB và Node.js
       + shortid: lấy luôn id của database bạn vừa mới thêm vào
+8. add-redux-products
+   - npm install redux react-redux redux-thunk
+      + react-redux: giúp quản lý state dễ hơn
+      + react-thunk: action trong redux thường trả về dạng object (plain javascript object), trong trường hợp muốn gọi api để trả về một list trending thì action trả về không thể là một object được. mà phải trả về một function, action như vậy gọi là async action, redux-thunk sẽ giúp ta làm điều này

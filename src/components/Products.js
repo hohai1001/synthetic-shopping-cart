@@ -65,8 +65,8 @@ function Products(props) {
                 <li key={product.id}>
                   <div className="product">
                     <a onClick={() => openModal(product)} href="#/">
-                      <img src={product.imgCar} alt={product.title}></img>
-                      <p>{product.nameCar}</p>
+                      <img src={product.image} alt={product.name}></img>
+                      <p>{product.name}</p>
                     </a>
                     <div className="product-price">
                       <div>{formatCurrency(product.price)}</div>
@@ -90,17 +90,17 @@ function Products(props) {
               x
             </button>
             <div className="product-details">
-              <img src={productt.imgCar} alt={productt.title}></img>
+              <img src={productt.image} alt={productt.name}></img>
               <div className="product-details-description">
                 <p>
-                  <strong>{productt.nameCar}</strong>
+                  <strong>{productt.name}</strong>
                 </p>
                 <p>{productt.startingPlace}</p>
                 <p>
                   Time start: {productt.timeStart}&emsp;Time end:{" "}
                   {productt.timeEnd}
                 </p>
-                {/* <p>
+                <p>
                   Available size:{" "}
                   {productt.availableSizes.map((x, idx) => (
                     <span key={idx.toString()}>
@@ -108,9 +108,9 @@ function Products(props) {
                       <button className="button">{x}</button>
                     </span>
                   ))}
-                </p> */}
+                </p>
                 <div className="product-price">
-                  <div>Giá: {productt.price}</div>
+                  <div>$ {productt.price}</div>
                   <button
                     className="button-primary"
                     onClick={() => {

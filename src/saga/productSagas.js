@@ -9,12 +9,28 @@ import {
 import { put, takeLatest, takeEvery } from "redux-saga/effects";
 import { Api } from "./Api";
 
+const url = "https://60608ef404b05d0017ba2b0c.mockapi.io/api/products";
+
 function* fetchProducts() {
   // chay 2
-  const response = yield fetch(
-    "https://5ff9781017386d0017b51dc9.mockapi.io/api/v1/ticketAll"
-  ).then((response) => response.json());
+  const response = yield fetch(url)
+    .then((response) => response.json())
+    .catch(function (err) {
+      console.log("Loi roi !!!", err);
+    });
   console.log("file json", response);
+
+  // const response = yield fetch(url, {
+  //   method: 'POST',
+  // body: JSON.stringify({
+  //   title: 'foo',
+  //   body: 'bar',
+  //   userId: 1,
+  // }),
+  // headers: {
+  //   'Content-type': 'application/json; charset=UTF-8',
+  // },
+  // });
 
   try {
     yield put({ type: "FETCH_SUCCEEDED", receivedProducts: response });

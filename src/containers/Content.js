@@ -168,7 +168,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetchProducts: () => dispatch(fetchProductsAction()),
-    viewProducts: () => dispatch(viewProducts()),
   };
 };
 

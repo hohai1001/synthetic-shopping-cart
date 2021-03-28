@@ -4,8 +4,11 @@ import formatCurrency from "../util";
 import Fade from "react-reveal/Fade";
 import Modal from "react-modal";
 import Zoom from "react-reveal/Zoom";
+import { connect } from "react-redux";
+import { openView } from "../actions/productAction";
 
-function Products({ products, addToCart }) {
+// function Products({ products, addToCart }) {
+function Products(props) {
   // console.log("type of product", products.isArray);
   // let change = JSON.stringify(products);
   // console.log("json", typeof change);
@@ -19,14 +22,17 @@ function Products({ products, addToCart }) {
   const openModal = (product) => {
     setProduct({ product });
   };
-  const closeModal = () => {};
-  // const productt = product.product;
-  const productt = products;
+  const closeModal = () => {
+    setProduct(false);
+  };
+  const productt = product.product;
+  // const productt = props.getStatusView;
+
   console.log("productt", productt);
   return (
     <div>
       <Fade bottom cascade={true}>
-        {!products ? (
+        {!props.products ? (
           <div className="products">Loading...</div>
         ) : (
           // <ul className="products">
@@ -53,9 +59,9 @@ function Products({ products, addToCart }) {
           //     ))}
           // </ul>
           <ul className="products">
-            {products &&
-              products.length > 0 &&
-              products.map((product) => (
+            {props.products &&
+              props.products.length > 0 &&
+              props.products.map((product) => (
                 <li key={product.id}>
                   <div className="product">
                     <a onClick={() => openModal(product)} href="#/">
@@ -65,7 +71,7 @@ function Products({ products, addToCart }) {
                     <div className="product-price">
                       <div>{formatCurrency(product.price)}</div>
                       <button
-                        onClick={() => addToCart(product)}
+                        // onClick={() => addToCart(product)}
                         className="button-primary"
                       >
                         Add to cart
@@ -104,11 +110,11 @@ function Products({ products, addToCart }) {
                   ))}
                 </p> */}
                 <div className="product-price">
-                  <div>{productt.price}</div>
+                  <div>Giá: {productt.price}</div>
                   <button
                     className="button-primary"
                     onClick={() => {
-                      addToCart(productt);
+                      // addToCart(productt);
                       closeModal();
                     }}
                   >
@@ -128,4 +134,17 @@ Products.propTypes = {
   addToCart: PropTypes.any,
 };
 
-export default Products;
+const mapStateToProps = (state) => ({
+  getStatusView: state.productReducer.root,
+  openView: state.productReducer.openView,
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    openView: () => dispatch(openView()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);
+
+// export default Products;

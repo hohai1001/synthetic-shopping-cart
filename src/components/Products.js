@@ -63,6 +63,7 @@ function Products(props) {
               props.products.length > 0 &&
               props.products.map((product) => (
                 <li key={product.id}>
+                  {console.log("image", product.image)}
                   <div className="product">
                     <a onClick={() => openModal(product)} href="#/">
                       <img src={product.image} alt={product.name}></img>
@@ -71,7 +72,7 @@ function Products(props) {
                     <div className="product-price">
                       <div>{formatCurrency(product.price)}</div>
                       <button
-                        // onClick={() => addToCart(product)}
+                        onClick={() => props.addToCart(product)}
                         className="button-primary"
                       >
                         Add to cart

@@ -20,6 +20,7 @@ import { Api } from "./Api";
 const url = "https://60608ef404b05d0017ba2b0c.mockapi.io/api/products";
 
 function* fetchProducts() {
+  // sdlkfjsdlkjfsdljfsld
   const response = yield fetch(url)
     .then((response) => response.json())
     .catch(function (err) {

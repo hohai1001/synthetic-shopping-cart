@@ -10,7 +10,7 @@ import { put, takeLatest, takeEvery } from "redux-saga/effects";
 import { Api } from "./Api";
 
 function* fetchProducts() {
-  // chay 2 kjsdfhksjdhksdhf
+  // chay 2
   const response = yield fetch(
     "https://5ff9781017386d0017b51dc9.mockapi.io/api/v1/ticketAll"
   ).then((response) => response.json());

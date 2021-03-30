@@ -26,10 +26,10 @@ export const fetchFailedAction = () => {
   };
 };
 
-export const viewProducts = (openView) => {
+export const openView = () => {
   console.log("action VIEW");
   return {
     type: VIEW_PRODUCTS,
-    openView: true,
+    // openView: true,
   };
 };

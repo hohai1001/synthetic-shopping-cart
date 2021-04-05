@@ -31,10 +31,14 @@ const productReducer = (state = inital, action) =>
         return [];
       // case VIEW_PRODUCTS:
       //   return (draft = { ...state, openView: !openView });
+      case POST_PROPDUCTS:
+        console.log("POST_REDUCER");
+        // xử lý data
+        // draft.postProd.isPost = true;
+        break;
       case POST_SUCCEEDED:
         // draft.root = action.postProducts;
-        console.log("draft post");
-        console.log("action.post", action);
+        console.log("POST-REDUCER_SUCCEEDED");
         draft.root.push(action.datas);
         break;
       case PUT_SUCCEEDED:
@@ -45,10 +49,6 @@ const productReducer = (state = inital, action) =>
         draft.root = action.deleteProducts;
         console.log("draft delete");
         break;
-      // case POST_PROPDUCTS:
-      //   // xử lý data
-      //   draft.postProd.isPost = true;
-      //   break;
       default:
         return state;
     }

@@ -71,7 +71,6 @@ function Content(props) {
   // hàm thêm sản phẩm vào giỏ hàng
   // biến product khi click sẽ nhận được 1 data chứa các object
   const addToCart = (product) => {
-    console.log("123435");
     // sao chép mảng
     const cartItem = cartItems.slice(); // slice là sao chép 1 mảng mới, sau đó lấy mảng mới gán qua cartItem, nó khác với cartItem = cartItems (2 thằng này là 1)
     // đặt cờ hiệu
@@ -128,10 +127,10 @@ function Content(props) {
   // React.useEffect(() => {
   //   props.onFetchProducts();
   // });
-  const lengthProducts = props.getProducts;
-  console.log("kdsfhskdjf", props.getProducts);
-  console.log("lengthProducts", typeof lengthProducts);
-  console.log("lengthProductssdfsdfsdfsd", lengthProducts);
+  // const lengthProducts = props.getProducts;
+  // console.log("kdsfhskdjf", props.getProducts);
+  // console.log("lengthProducts", typeof lengthProducts);
+  // console.log("lengthProductssdfsdfsdfsd", lengthProducts);
 
   return (
     <div className="grid-container">

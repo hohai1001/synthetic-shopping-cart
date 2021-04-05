@@ -40,7 +40,7 @@ export const openView = () => {
 };
 
 export const postProducts = (params) => {
-  console.log("action post", params);
+  console.log("action post");
   return {
     type: POST_PROPDUCTS,
     name: params,
@@ -48,7 +48,7 @@ export const postProducts = (params) => {
 };
 
 export const postSuccessProducts = (datas) => {
-  console.log("action SUCCEEDED", datas);
+  console.log("action SUCCEEDED");
   return {
     type: POST_SUCCEEDED,
     datas,

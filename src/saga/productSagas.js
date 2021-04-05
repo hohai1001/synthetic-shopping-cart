@@ -36,7 +36,7 @@ function* fetchProducts() {
 }
 
 function* postProducts(action) {
-  console.log("action post", action);
+  console.log("SAGA-POST", action.name);
   const post = yield fetch(url, {
     method: "POST",
     body: JSON.stringify({
@@ -57,7 +57,6 @@ function* postProducts(action) {
     .catch(function (err) {
       console.log("Loi post roi !!!", err);
     });
-  console.log("post", post);
   try {
     yield put(postSuccessProducts(post));
   } catch (error) {

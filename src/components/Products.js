@@ -28,7 +28,7 @@ function Products(props) {
   const productt = product.product;
   // const productt = props.getStatusView;
 
-  console.log("productt", productt);
+  // console.log("productt", productt);
   return (
     <div>
       <Fade bottom cascade={true}>
@@ -63,7 +63,6 @@ function Products(props) {
               props.products.length > 0 &&
               props.products.map((product) => (
                 <li key={product.id}>
-                  {console.log("image", product.image)}
                   <div className="product">
                     <a onClick={() => openModal(product)} href="#/">
                       <img src={product.image} alt={product.name}></img>

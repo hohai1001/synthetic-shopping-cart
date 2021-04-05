@@ -5,9 +5,12 @@ import Products from "../components/Products";
 import data from "../data.json";
 import { connect } from "react-redux";
 import {
+  postProducts,
   fetchProductsAction,
+  putProducts,
   fetchSuccessAction,
   viewProducts,
+  deleteProducts,
 } from "../actions/productAction";
 
 function Content(props) {
@@ -79,7 +82,7 @@ function Content(props) {
       // sau đó đi vào if này so sánh thì id sẽ không bằng nhau (item 1)
 
       // (lần 2): lần này khi click thì product._id sẽ bằng item._id (vì cartItem đã thêm 1 data vào mảng mà data là data của lần 1 chạy)
-      if (item._id === product._id) {
+      if (item.id === product.id) {
         // (lần 2): lúc này đã có thêm obj count trong mảng, và tăng thêm 1
         item.count++; // item đại diện cho tên object
         // (lần 2): cờ hiệu lúc này đổi thành true
@@ -109,10 +112,10 @@ function Content(props) {
     // coppy mảng mới để set chứ không được lấy mảng chính
     const cartItem = cartItems.slice();
     // nếu id product vừa click mà trùng với id cartItem trong giở hàng thì xóa đi. sau đó set lại state
-    setCartItems(cartItem.filter((x) => x._id !== product._id));
+    setCartItems(cartItem.filter((x) => x.id !== product.id));
     localStorage.setItem(
       "cartItem",
-      JSON.stringify(cartItem.filter((x) => x._id !== product._id))
+      JSON.stringify(cartItem.filter((x) => x.id !== product.id))
     );
   };
 
@@ -124,8 +127,10 @@ function Content(props) {
   // React.useEffect(() => {
   //   props.onFetchProducts();
   // });
-
-  console.log("kdsfhskdjf", props.getProducts);
+  // const lengthProducts = props.getProducts;
+  // console.log("kdsfhskdjf", props.getProducts);
+  // console.log("lengthProducts", typeof lengthProducts);
+  // console.log("lengthProductssdfsdfsdfsd", lengthProducts);
 
   return (
     <div className="grid-container">
@@ -138,22 +143,30 @@ function Content(props) {
           <div className="main">
             {/* <button onClick={() => props.getProduct()}>sdfsdfsdfds</button> */}
             <Filter
-              count={products.length} // lấy số lượng hiện tại của mảng data
+              // count={lengthProducts.length} // lấy số lượng hiện tại của mảng data
               size={size}
               sort={sort}
               filterProducts={filterProducts}
               sortProducts={sortProducts}
             />
-            <button onClick={() => props.onFetchProducts()}>ccccccc</button>
+            <div>
+              <button onClick={() => props.onFetchProducts()}>Get</button>&emsp;
+              <button onClick={() => props.callPostProducts({ name: "xxx" })}>
+                Post
+              </button>
+              &emsp;
+              <button onClick={() => props.putProducts()}>Put</button>&emsp;
+              <button onClick={() => props.deleteProducts()}>Delete</button>
+            </div>
             <Products products={props.getProducts} addToCart={addToCart} />
           </div>
-          {/* <div className="sidebar">
+          <div className="sidebar">
             <Cart
               createOrder={createOrder}
               cartItems={cartItems}
               removeFromCart={removeFromCart}
             />
-          </div> */}
+          </div>
         </div>
       </main>
       <footer>All right is reserved.</footer>
@@ -168,6 +181,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => {
   return {
     onFetchProducts: () => dispatch(fetchProductsAction()),
+    callPostProducts: (param) => dispatch(postProducts(param)),
+    putProducts: () => dispatch(putProducts()),
+    deleteProducts: () => dispatch(deleteProducts()),
   };
 };
 

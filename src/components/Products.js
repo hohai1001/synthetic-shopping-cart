@@ -28,7 +28,7 @@ function Products(props) {
   const productt = product.product;
   // const productt = props.getStatusView;
 
-  console.log("productt", productt);
+  // console.log("productt", productt);
   return (
     <div>
       <Fade bottom cascade={true}>
@@ -71,7 +71,7 @@ function Products(props) {
                     <div className="product-price">
                       <div>{formatCurrency(product.price)}</div>
                       <button
-                        // onClick={() => addToCart(product)}
+                        onClick={() => props.addToCart(product)}
                         className="button-primary"
                       >
                         Add to cart

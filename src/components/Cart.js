@@ -46,7 +46,7 @@ function Cart(props) {
         <Fade left>
           <ul className="cart-items">
             {cartItems.map((item) => (
-              <li key={item._id}>
+              <li key={item.id}>
                 <div>
                   <img src={item.image} alt={item.title} />
                 </div>

@@ -3,6 +3,12 @@ import {
   FETCH_FAILED,
   FETCH_PRODUCTS,
   VIEW_PRODUCTS,
+  POST_PROPDUCTS,
+  POST_SUCCEEDED,
+  PUT_PROPDUCTS,
+  PUT_SUCCEEDED,
+  DELETE_PROPDUCTS,
+  DELETE_SUCCEEDED,
 } from "./actionTypes";
 
 export const fetchProductsAction = () => {
@@ -30,6 +36,49 @@ export const openView = () => {
   console.log("action VIEW");
   return {
     type: VIEW_PRODUCTS,
-    // openView: true,
+  };
+};
+
+export const postProducts = (params) => {
+  console.log("action post");
+  return {
+    type: POST_PROPDUCTS,
+    name: params,
+  };
+};
+
+export const postSuccessProducts = (datas) => {
+  console.log("action SUCCEEDED");
+  return {
+    type: POST_SUCCEEDED,
+    datas,
+  };
+};
+
+export const putProducts = () => {
+  console.log("action put");
+  return {
+    type: PUT_PROPDUCTS,
+  };
+};
+
+export const putSuccessProducts = () => {
+  console.log("action put");
+  return {
+    type: PUT_SUCCEEDED,
+  };
+};
+
+export const deleteProducts = () => {
+  console.log("action delete");
+  return {
+    type: DELETE_PROPDUCTS,
+  };
+};
+
+export const deleteSuccessProducts = () => {
+  console.log("action delete");
+  return {
+    type: DELETE_SUCCEEDED,
   };
 };

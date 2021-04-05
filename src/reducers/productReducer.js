@@ -4,23 +4,51 @@ import {
   FETCH_SUCCEEDED,
   FETCH_FAILED,
   VIEW_PRODUCTS,
+  POST_PROPDUCTS,
+  POST_SUCCEEDED,
+  PUT_SUCCEEDED,
+  DELETE_PROPDUCTS,
+  DELETE_SUCCEEDED,
 } from "../actions/actionTypes";
 
-const inital = {};
+const inital = {
+  root: [],
+  // postProd: {
+  //   isPost: false,
+  //   data: [],
+  // },
+};
 const openView = false;
 const productReducer = (state = inital, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case FETCH_SUCCEEDED:
         console.log("state", state);
-        draft = { root: action.receivedProducts, openView: openView };
-        console.log("draft.root", draft.root);
-        // break;
-        return draft;
+        draft.root = action.receivedProducts;
+        console.log("action", action);
+        break;
       case FETCH_FAILED:
         return [];
-      case VIEW_PRODUCTS:
-        return (draft = { ...state, openView: !openView });
+      // case VIEW_PRODUCTS:
+      //   return (draft = { ...state, openView: !openView });
+      case POST_PROPDUCTS:
+        console.log("POST_REDUCER");
+        // xử lý data
+        // draft.postProd.isPost = true;
+        break;
+      case POST_SUCCEEDED:
+        // draft.root = action.postProducts;
+        console.log("POST-REDUCER_SUCCEEDED");
+        draft.root.push(action.datas);
+        break;
+      case PUT_SUCCEEDED:
+        draft.root = action.putProducts;
+        console.log("draft put");
+        break;
+      case DELETE_SUCCEEDED:
+        draft.root = action.deleteProducts;
+        console.log("draft delete");
+        break;
       default:
         return state;
     }
